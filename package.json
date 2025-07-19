@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.5.0",
+    "@stripe/react-stripe-js": "^3.7.0",
+    "@stripe/stripe-js": "^7.4.0",
     "@tanstack/react-query": "^5.48.0",
     "axios": "^1.7.2",
     "firebase": "^10.12.2",
@@ -27,6 +29,7 @@
     "react-simple-captcha": "^9.3.1",
     "react-tabs": "^6.0.2",
     "sort-by": "^1.2.0",
+    "stripe": "^18.3.0",
     "sweetalert2": "^11.11.1",
     "swiper": "^11.1.4"
   },
