@@ -50,7 +50,7 @@ const Login = () => {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/send-otp', {
+            const res = await fetch('https://bistro-boss-server-ruddy-sigma.vercel.app/send-otp', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email })
@@ -77,7 +77,7 @@ const Login = () => {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/reset-password', {
+            const res = await fetch('https://bistro-boss-server-ruddy-sigma.vercel.app/reset-password', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, otp, newPassword })

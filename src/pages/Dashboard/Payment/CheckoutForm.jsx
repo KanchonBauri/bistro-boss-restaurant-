@@ -111,8 +111,8 @@ const CheckoutForm = ({ item = {} }) => {
                     const cartItem = {
                         menuId: _id,
                         email: user.email,
-                        email: user.name,
-                        name,
+                        name: user.name,
+                        // name,
                         image,
                         price
                     }
@@ -145,7 +145,7 @@ const CheckoutForm = ({ item = {} }) => {
             // await axios.post('/bkash-token');
 
             // Create payment
-            const res = await axios.post('http://localhost:5000/bkash-create-payment', {
+            const res = await axios.post('https://bistro-boss-server-ruddy-sigma.vercel.app/bkash-create-payment', {
                 amount: totalPrice,
                 invoice: `INV-${Date.now()}`
             });

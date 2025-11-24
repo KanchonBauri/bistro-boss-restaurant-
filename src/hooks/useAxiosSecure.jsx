@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
     // baseURL: 'http://localhost:5000'              
-    baseURL: 'http://localhost:5000'              
+    baseURL: 'https://bistro-boss-server-ruddy-sigma.vercel.app'              
 })
 const useAxiosSecure = () => {
     const navigate = useNavigate();
