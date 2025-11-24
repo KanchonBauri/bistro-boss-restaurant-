@@ -1,4 +1,3 @@
-
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -6,9 +5,11 @@ import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ item = {} }) => {
+    const { name, image, price, recipe, _id } = item;
     const [error, setError] = useState('');
     const [clientSecret, setClientSecret] = useState('')
     const [transactionId, setTransactionId] = useState('');
@@ -104,10 +105,64 @@ const CheckoutForm = () => {
                     navigate('/dashboard/paymentHistory')
                 }
 
+                // payment er pore deleted cards gulu database add korte hobe
+                if (user && user.email) {
+                    // send cart item to the database
+                    const cartItem = {
+                        menuId: _id,
+                        email: user.email,
+                        email: user.name,
+                        name,
+                        image,
+                        price
+                    }
+                    axiosSecure.post('/cards', cartItem)
+                        .then(res => {
+                            console.log(res.data)
+                            if (res.data.insertedId) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: `${name} added to your cart`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                //   refetch cart to update the cart items count
+                                refetch();
+                            }
+                        })
+                }
+
             }
         }
 
+
     }
+
+    const handleBkashPayment = async () => {
+        try {
+            // Get token (optional, if not already fetched)
+            // await axios.post('/bkash-token');
+
+            // Create payment
+            const res = await axios.post('http://localhost:5000/bkash-create-payment', {
+                amount: totalPrice,
+                invoice: `INV-${Date.now()}`
+            });
+
+            const paymentUrl = res.data.bkashURL;
+            const paymentID = res.data.paymentID;
+
+            // Save paymentID to localStorage for later execute
+            localStorage.setItem('bkashPaymentID', paymentID);
+
+            // Redirect user to bKash payment page
+            window.location.href = paymentUrl;
+
+        } catch (error) {
+            console.error("bKash payment failed", error);
+        }
+    };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -130,6 +185,14 @@ const CheckoutForm = () => {
             <button className="btn btn-sm btn-primary my-4" type="submit" disabled={!stripe || !clientSecret}>
                 Pay
             </button>
+            <button
+                className="btn btn-sm btn-warning"
+                onClick={handleBkashPayment}
+                type="button"
+            >
+                Pay with bKash
+            </button>
+
             <p className="text-red-600">{error}</p>
             {transactionId && <p className="text-green-600"> Your transaction id: {transactionId}</p>}
         </form>

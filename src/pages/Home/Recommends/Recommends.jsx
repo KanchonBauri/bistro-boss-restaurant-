@@ -1,5 +1,6 @@
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import recommendImg from '../../../assets/home/slide1.jpg'
+import { Link } from "react-router-dom";
 const Recommends = () => {
     return (
         <div className="  ">
@@ -15,7 +16,7 @@ const Recommends = () => {
                         <h2 className="card-title">Caeser Salad</h2>
                         <p>Lettuce, Eggs, Parmesan Cheese, Chicken</p>
                         <div className="card-actions">
-                            <button className="btn btn-outline bg-slate-100 text-yellow-500 border-0 border-b-4">ADD TO CART</button>
+                            <Link to="/order/salad"> <button className="btn btn-outline bg-slate-100 text-yellow-500 border-0 border-b-4">ADD TO CART</button></Link>
                         </div>
                     </div>
                 </div>
@@ -24,10 +25,10 @@ const Recommends = () => {
                         <img className="max-h-96 w-80  " src={recommendImg} alt="Shoes" />
                     </figure>
                     <div className="card-body items-center text-center">
-                        <h2 className="card-title">Caeser Salad</h2>
+                        <h2 className="card-title">Pizza</h2>
                         <p>Lettuce, Eggs, Parmesan Cheese, Chicken</p>
                         <div className="card-actions">
-                            <button className="btn btn-outline bg-slate-100 text-yellow-500 border-0 border-b-4">ADD TO CART</button>
+                            <Link to="/order/pizza"> <button className="btn btn-outline bg-slate-100 text-yellow-500 border-0 border-b-4">ADD TO CART</button></Link>
                         </div>
                     </div>
                 </div>
@@ -36,14 +37,14 @@ const Recommends = () => {
                         <img className="max-h-96 w-80  " src={recommendImg} alt="Shoes" />
                     </figure>
                     <div className="card-body items-center text-center">
-                        <h2 className="card-title">Caeser Salad</h2>
+                        <h2 className="card-title">Soft Drinks</h2>
                         <p>Lettuce, Eggs, Parmesan Cheese, Chicken</p>
                         <div className="card-actions">
-                            <button className="btn btn-outline bg-slate-100 text-yellow-500 border-0 border-b-4">ADD TO CART</button>
+                            <Link to="/order/drinks"> <button className="btn btn-outline bg-slate-100 text-yellow-500 border-0 border-b-4">ADD TO CART</button></Link>
                         </div>
                     </div>
                 </div>
-               </div>
+            </div>
         </div>
     );
 };

@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { sendPasswordResetEmail } from "firebase/auth";
 // import { GoogleAuthProvider } from "firebase/auth/web-extension";
 
 export const AuthContext = createContext(null);
@@ -23,6 +24,11 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
+
+    const resetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+}
 
 
     const googleSignIn = () => {
@@ -52,14 +58,16 @@ const AuthProvider = ({ children }) => {
                 .then(res => {
                     if (res.data.token) {
                         localStorage.setItem('access-token', res.data.token);
+                         setLoading(false);
                     }
                 })
             }
             else {
                 // TODO : remove token ( if token stored in the client side: Local storage, caching, in memory)
                 localStorage.removeItem('access-token');
+                 setLoading(false);
             }
-            setLoading(false);
+           
         });
         return () => {
             return unsubscribe();
@@ -77,7 +85,8 @@ const AuthProvider = ({ children }) => {
         signIn,
         googleSignIn,
         logOut,
-        updateUserProfile
+        updateUserProfile, 
+        resetPassword
     }
 
     return (

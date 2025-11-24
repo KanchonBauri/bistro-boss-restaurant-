@@ -18,6 +18,12 @@ import ManageItems from "../pages/Dashboard/ManageItems/ManageItems";
 import UpdateItem from "../pages/Dashboard/UpdateItem/UpdateItem";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../pages/Dashboard/UserHome/UserHome";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import ManageBookings from "../pages/Dashboard/ManageBookings/ManageBookings";
+import History from "../pages/Dashboard/History/History";
+import Review from "../pages/Dashboard/Review/Review";
+import Search from "../pages/Dashboard/Search/Search";
 
 
 
@@ -58,9 +64,22 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            //normal user routes
+            {
+                path: 'userHome',
+                element: <UserHome></UserHome>
+            },
+            {
+                path: 'history',
+                element: <History></History>
+            },
             {
                 path: 'cart',
                 element: <Cart></Cart>
+            },
+            {
+                path: 'review',
+                element: <Review></Review>
             },
             {
                 path: 'payment',
@@ -70,8 +89,16 @@ export const router = createBrowserRouter([
                 path: 'paymentHistory',
                 element: <PaymentHistory></PaymentHistory>
             },
+            {
+                path: 'search',
+                element: <Search></Search>
+            },
 
             // admin only routes
+            {
+                path: 'adminHome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
             {
                 path: 'addItems',
                 element: <AdminRoute><AddItems></AddItems></AdminRoute>
@@ -79,6 +106,10 @@ export const router = createBrowserRouter([
             {
                 path: 'manageItems',
                 element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
+            },
+            {
+                path: 'manageBookings',
+                element: <AdminRoute><ManageBookings></ManageBookings></AdminRoute>
             },
             {
                 path: 'updateItem/:id',

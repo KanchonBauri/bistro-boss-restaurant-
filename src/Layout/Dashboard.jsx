@@ -33,7 +33,7 @@ const Dashboard = () => {
                                     Manage Items</NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/bookings">
+                                <NavLink to="/dashboard/manageBookings">
                                     <FaBook></FaBook>
                                     Manage Bookings</NavLink>
                             </li>
@@ -53,7 +53,7 @@ const Dashboard = () => {
                                 <li>
                                     <NavLink to="/dashboard/history">
                                         <FaCalendar></FaCalendar>
-                                        Not History</NavLink>
+                                        History</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/cart">
@@ -80,7 +80,7 @@ const Dashboard = () => {
                             Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/order/salad">
+                        <NavLink to="/order/search">
                             <FaSearch></FaSearch>
                             Menu</NavLink>
                     </li>

@@ -1,7 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import rollupNodePolyFill from 'rollup-plugin-node-polyfills'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    rollupNodePolyFill()
+  ],
+  resolve: {
+    alias: {
+      events: 'rollup-plugin-node-polyfills/polyfills/events'
+    }
+  },
+  optimizeDeps: {
+    include: ['events']
+  },
+  build: {
+    rollupOptions: {
+      plugins: [rollupNodePolyFill()]
+    }
+  }
 })

@@ -53,6 +53,7 @@ const ManageItems = () => {
                                 </th>
                                 <th>Image</th>
                                 <th>Item Name</th>
+                                <th>Category</th>
                                 <th>Price</th>
                                 <th>Update</th>
                                 <th>Delete</th>
@@ -75,6 +76,9 @@ const ManageItems = () => {
                                     </td>
                                     <td>
                                         {item.name}
+                                    </td>
+                                    <td>
+                                        {item.category}
                                     </td>
                                     <td className="text-right">${item.price}</td>
                                     <td>
